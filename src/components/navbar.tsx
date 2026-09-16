@@ -1,4 +1,67 @@
 'use client';
-import Link from 'next/link'; import { Menu, X } from 'lucide-react'; import { useState } from 'react'; import { WhatsAppButton } from './whatsapp-button'; import { generalMessage } from '@/lib/whatsapp';
-const links=[['Home','/'],['About','/about'],['Cakes','/cakes'],['Parfaits','/parfaits'],['Small Chops','/small-chops'],['Events','/events'],['Ramadan','/ramadan'],['Contact','/contact']];
-export function Navbar(){const [open,setOpen]=useState(false); return <header className="sticky top-0 z-50 border-b border-[#eadfd2] bg-[#fbf7f0]/95 backdrop-blur"><div className="shell flex h-18 items-center justify-between py-3"><Link href="/" className="serif text-xl font-bold leading-none">Mibaz <span className="text-[#a47237]">Treats</span><small className="block font-sans text-[9px] tracking-[.22em]">& EVENTS</small></Link><nav className="hidden lg:flex items-center gap-5 text-sm font-semibold">{links.map(([n,h])=><Link className="hover:text-[#9e7138]" href={h} key={h}>{n}</Link>)}</nav><div className="hidden lg:block"><WhatsAppButton message={generalMessage}>Order now</WhatsAppButton></div><button aria-label="Toggle navigation" onClick={()=>setOpen(!open)} className="lg:hidden p-2">{open?<X/>:<Menu/>}</button></div>{open&&<nav className="shell border-t border-[#eadfd2] py-4 lg:hidden grid gap-1">{links.map(([n,h])=><Link onClick={()=>setOpen(false)} className="rounded-lg p-3 font-semibold hover:bg-white" href={h} key={h}>{n}</Link>)}<WhatsAppButton className="mt-2" message={generalMessage}>Order / enquire</WhatsAppButton></nav>}</header>}
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import { WhatsAppButton } from './whatsapp-button';
+import { generalMessage } from '@/lib/whatsapp';
+
+const links = [
+  ['Home', '/'],
+  ['About', '/about'],
+  ['Cakes', '/cakes'],
+  ['Parfaits', '/parfaits'],
+  ['Small Chops', '/small-chops'],
+  ['Events', '/events'],
+  ['Ramadan', '/ramadan'],
+  ['Contact', '/contact'],
+];
+
+export function Navbar() {
+  const [open, setOpen] = useState(false);
+  return (
+    <header className="sticky top-0 z-50 border-b border-[#eadfd2] bg-[#fbf7f0]/95 backdrop-blur">
+      <div className="shell flex h-18 items-center justify-between py-3">
+        <Link href="/" className="serif text-xl font-bold leading-none">
+          Mibaz <span className="text-[#a47237]">Treats</span>
+          <small className="block font-sans text-[9px] tracking-[.22em]">
+            & EVENTS
+          </small>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-5 text-sm font-semibold">
+          {links.map(([n, h]) => (
+            <Link className="hover:text-[#9e7138]" href={h} key={h}>
+              {n}
+            </Link>
+          ))}
+        </nav>
+        <div className="hidden lg:block">
+          <WhatsAppButton message={generalMessage}>Order now</WhatsAppButton>
+        </div>
+        <button
+          aria-label="Toggle navigation"
+          onClick={() => setOpen(!open)}
+          className="lg:hidden p-2"
+        >
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <nav className="shell border-t border-[#eadfd2] py-4 lg:hidden grid gap-1">
+          {links.map(([n, h]) => (
+            <Link
+              onClick={() => setOpen(false)}
+              className="rounded-lg p-3 font-semibold hover:bg-white"
+              href={h}
+              key={h}
+            >
+              {n}
+            </Link>
+          ))}
+          <WhatsAppButton className="mt-2" message={generalMessage}>
+            Order / enquire
+          </WhatsAppButton>
+        </nav>
+      )}
+    </header>
+  );
+}

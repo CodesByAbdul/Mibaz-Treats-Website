@@ -1,1 +1,18 @@
-import { PageHero } from '@/components/page-hero'; import { ProductGrid } from '@/components/product-grid'; import { chops } from '@/data/products'; export const metadata={title:'Small Chops | Mibaz Treats & Events'}; export default function SmallChops(){return <><PageHero eyebrow="Party bites" title="Small chops made to bring people together." copy="Samosas, spring rolls, puff-puff, pastries and assorted small chops, prepared for celebrations, gatherings and event tables."/><main className="shell py-16"><ProductGrid items={chops} type="Small chops"/></main></>}
+import { PageHero } from '@/components/page-hero';
+import { ProductGrid } from '@/components/product-grid';
+import { chops } from '@/data/products';
+export const metadata = { title: 'Small Chops | Mibaz Treats & Events' };
+export default function SmallChops() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Party bites"
+        title="Small chops made to bring people together."
+        copy="Samosas, spring rolls, puff-puff, pastries and assorted small chops, prepared for celebrations, gatherings and event tables."
+      />
+      <main className="shell py-16">
+        <ProductGrid items={chops} type="Small chops" />
+      </main>
+    </>
+  );
+}

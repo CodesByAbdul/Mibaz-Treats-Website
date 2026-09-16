@@ -1,3 +1,28 @@
-import type { Metadata } from 'next'; import './globals.css'; import { Navbar } from '@/components/navbar'; import { Footer } from '@/components/footer'; import { WhatsAppButton } from '@/components/whatsapp-button'; import { generalMessage } from '@/lib/whatsapp';
-export const metadata: Metadata={title:'Mibaz Treats & Events | Cakes, Parfaits, Small Chops & Events',description:'Mibaz Treats & Events creates beautiful cakes, delicious parfaits, tasty small chops and memorable event experiences, including event decoration and hall consultation.'};
-export default function Layout({children}:{children:React.ReactNode}){return <html lang="en"><body><Navbar/>{children}<div className="fixed bottom-3 left-3 right-3 z-40 md:hidden"><WhatsAppButton className="w-full shadow-xl" message={generalMessage}>Order on WhatsApp</WhatsAppButton></div><Footer/></body></html>}
+import type { Metadata } from 'next';
+// @ts-ignore Next.js processes this global stylesheet import at build time.
+import './globals.css';
+import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
+import { WhatsAppButton } from '@/components/whatsapp-button';
+import { generalMessage } from '@/lib/whatsapp';
+export const metadata: Metadata = {
+  title: 'Mibaz Treats & Events | Cakes, Parfaits, Small Chops & Events',
+  description:
+    'Mibaz Treats & Events creates beautiful cakes, delicious parfaits, tasty small chops and memorable event experiences, including event decoration and hall consultation.',
+};
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <Navbar />
+        {children}
+        <div className="fixed bottom-3 left-3 right-3 z-40 md:hidden">
+          <WhatsAppButton className="w-full shadow-xl" message={generalMessage}>
+            Order on WhatsApp
+          </WhatsAppButton>
+        </div>
+        <Footer />
+      </body>
+    </html>
+  );
+}

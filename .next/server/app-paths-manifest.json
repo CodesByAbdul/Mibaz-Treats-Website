@@ -1,0 +1,7 @@
+{
+  "/events/page": "app/events/page.js",
+  "/small-chops/page": "app/small-chops/page.js",
+  "/parfaits/page": "app/parfaits/page.js",
+  "/cakes/page": "app/cakes/page.js",
+  "/about/page": "app/about/page.js"
+}

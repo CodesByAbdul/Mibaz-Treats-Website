@@ -1,3 +1,187 @@
-import Image from 'next/image'; import Link from 'next/link'; import { CakeSlice, GlassWater, PartyPopper, Sparkles, MapPinned, ArrowRight } from 'lucide-react'; import { WhatsAppButton } from '@/components/whatsapp-button'; import { business } from '@/config/business'; import { ProductGrid } from '@/components/product-grid'; import { cakes, parfaits, chops } from '@/data/products';
-const services=[['Cakes','Beautifully crafted cakes for birthdays, weddings, celebrations and every sweet occasion.','/cakes',CakeSlice],['Parfaits','Fresh, delicious and beautifully layered parfaits for everyday indulgence and special moments.','/parfaits',GlassWater],['Small Chops','Perfectly prepared bites for parties, celebrations and gatherings.','/small-chops',PartyPopper],['Event Decoration','Transforming spaces into beautiful settings for memorable celebrations.','/events',Sparkles],['Event Hall Consultation','Helping you find and plan the right space for your event.','/consultation',MapPinned]];
-export default function Home(){return <><section className="overflow-hidden bg-[#fbf7f0]"><div className="shell grid items-center gap-10 py-14 md:grid-cols-2 md:py-24"><div><p className="eyebrow">Cakes · treats · events</p><h1 className="serif mt-4 text-5xl leading-[1.05] md:text-7xl">Sweet Treats.<br/><em className="text-[#9e7138]">Beautiful Moments.</em><br/>Unforgettable Events.</h1><p className="mt-6 max-w-xl text-lg leading-8 text-stone-700">Mibaz Treats & Events brings together delicious cakes, delightful parfaits, tasty small chops and beautiful event experiences — all crafted to make your special moments memorable.</p><div className="mt-8 flex flex-wrap gap-3"><Link className="btn btn-primary" href="#treats">Explore our treats <ArrowRight size={17}/></Link><WhatsAppButton message={`Hello ${business.name}, I'd like to make an enquiry.`}>Talk to us on WhatsApp</WhatsAppButton></div></div><div className="relative min-h-[430px]"><div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-[#e7c8bc]"/><Image priority fill className="rounded-[2.5rem] object-cover" sizes="(max-width: 768px) 100vw, 50vw" src="https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&w=1200&q=85" alt="Elegant celebration cake from Mibaz Treats & Events"/><div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-4 py-3 text-sm shadow-lg"><strong className="block serif text-lg">Made for your moment</strong>Cakes, treats and event beauty.</div></div></div></section>{business.ramadanCampaignEnabled&&<section className="bg-[#3d5550] py-4 text-white"><div className="shell flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center"><div><p className="font-bold">🌙 RAMADAN IFTAR IS HERE</p><p className="text-sm text-white/80">Fresh Nigerian meals prepared for your Iftar. Orders close at 12 PM daily.</p></div><Link className="btn bg-[#d9b76c] text-[#2d201b]" href="/ramadan">View Ramadan menu</Link></div></section>}<section className="shell py-20"><div className="max-w-2xl"><p className="eyebrow">What we do</p><h2 className="serif mt-2 text-4xl">Made with care. Styled with intention.</h2></div><div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-5">{services.map(([name,copy,href,Icon])=>{const I=Icon as typeof CakeSlice;return <Link className="card p-5 transition hover:-translate-y-1" href={href as string} key={name as string}><I className="text-[#a47237]"/><h3 className="serif mt-4 text-xl">{name as string}</h3><p className="mt-2 text-sm leading-6 text-stone-600">{copy as string}</p><span className="mt-4 inline-block text-sm font-bold text-[#662f39]">Explore <ArrowRight className="inline" size={15}/></span></Link>})}</div></section><section id="treats" className="bg-[#f0e5d7] py-20"><div className="shell"><p className="eyebrow">Featured treats</p><h2 className="serif mt-2 text-4xl">A Little Something for Every Occasion</h2><p className="mt-3 max-w-xl text-stone-600">Beautiful details and delicious moments, ready for the occasions you hold close.</p><div className="mt-9"><ProductGrid type="Featured treat" items={[cakes[0],parfaits[0],chops[0]]}/></div></div></section><section className="shell grid gap-8 py-20 md:grid-cols-2"><div className="rounded-3xl bg-[#662f39] p-8 text-white"><p className="eyebrow text-[#e7c47a]">Events & decoration</p><h2 className="serif mt-3 text-4xl">Let&apos;s make your event beautiful.</h2><p className="mt-4 max-w-md leading-7 text-white/80">From the colour theme to the finishing details, we create celebrations that feel wonderfully yours.</p><Link className="btn mt-6 bg-white text-[#662f39]" href="/events">Explore event services</Link></div><div className="rounded-3xl border border-[#e4d5c5] bg-white p-8"><p className="eyebrow">Need a venue?</p><h2 className="serif mt-3 text-4xl">Find a space that fits.</h2><p className="mt-4 max-w-md leading-7 text-stone-600">Get practical guidance on guest size, location, budget and the details that shape your event.</p><Link className="btn btn-secondary mt-6" href="/consultation">Book a consultation</Link></div></section></>}
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  CakeSlice,
+  GlassWater,
+  PartyPopper,
+  Sparkles,
+  MapPinned,
+  ArrowRight,
+} from 'lucide-react';
+import { WhatsAppButton } from '@/components/whatsapp-button';
+import { business } from '@/config/business';
+import { ProductGrid } from '@/components/product-grid';
+import { cakes, parfaits, chops } from '@/data/products';
+const services = [
+  [
+    'Cakes',
+    'Beautifully crafted cakes for birthdays, weddings, celebrations and every sweet occasion.',
+    '/cakes',
+    CakeSlice,
+  ],
+  [
+    'Parfaits',
+    'Fresh, delicious and beautifully layered parfaits for everyday indulgence and special moments.',
+    '/parfaits',
+    GlassWater,
+  ],
+  [
+    'Small Chops',
+    'Perfectly prepared bites for parties, celebrations and gatherings.',
+    '/small-chops',
+    PartyPopper,
+  ],
+  [
+    'Event Decoration',
+    'Transforming spaces into beautiful settings for memorable celebrations.',
+    '/events',
+    Sparkles,
+  ],
+  [
+    'Event Hall Consultation',
+    'Helping you find and plan the right space for your event.',
+    '/consultation',
+    MapPinned,
+  ],
+];
+export default function Home() {
+  return (
+    <>
+      <section className="overflow-hidden bg-[#fbf7f0]">
+        <div className="shell grid items-center gap-10 py-14 md:grid-cols-2 md:py-24">
+          <div>
+            <p className="eyebrow">Cakes · treats · events</p>
+            <h1 className="serif mt-4 text-5xl leading-[1.05] md:text-7xl">
+              Sweet Treats.
+              <br />
+              <em className="text-[#9e7138]">Beautiful Moments.</em>
+              <br />
+              Unforgettable Events.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-stone-700">
+              Mibaz Treats & Events brings together delicious cakes, delightful
+              parfaits, tasty small chops and beautiful event experiences — all
+              crafted to make your special moments memorable.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link className="btn btn-primary" href="#treats">
+                Explore our treats <ArrowRight size={17} />
+              </Link>
+              <WhatsAppButton
+                message={`Hello ${business.name}, I'd like to make an enquiry.`}
+              >
+                Talk to us on WhatsApp
+              </WhatsAppButton>
+            </div>
+          </div>
+          <div className="relative min-h-[430px]">
+            <div className="absolute inset-0 rotate-3 rounded-[2.5rem] bg-[#e7c8bc]" />
+            <Image
+              priority
+              fill
+              className="rounded-[2.5rem] object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              src="https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&w=1200&q=85"
+              alt="Elegant celebration cake from Mibaz Treats & Events"
+            />
+            <div className="absolute bottom-5 left-5 rounded-2xl bg-white/95 px-4 py-3 text-sm shadow-lg">
+              <strong className="block serif text-lg">
+                Made for your moment
+              </strong>
+              Cakes, treats and event beauty.
+            </div>
+          </div>
+        </div>
+      </section>
+      {business.ramadanCampaignEnabled && (
+        <section className="bg-[#3d5550] py-4 text-white">
+          <div className="shell flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+            <div>
+              <p className="font-bold">🌙 RAMADAN IFTAR IS HERE</p>
+              <p className="text-sm text-white/80">
+                Fresh Nigerian meals prepared for your Iftar. Orders close at 12
+                PM daily.
+              </p>
+            </div>
+            <Link className="btn bg-[#d9b76c] text-[#2d201b]" href="/ramadan">
+              View Ramadan menu
+            </Link>
+          </div>
+        </section>
+      )}
+      <section className="shell py-20">
+        <div className="max-w-2xl">
+          <p className="eyebrow">What we do</p>
+          <h2 className="serif mt-2 text-4xl">
+            Made with care. Styled with intention.
+          </h2>
+        </div>
+        <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          {services.map(([name, copy, href, Icon]) => {
+            const I = Icon as typeof CakeSlice;
+            return (
+              <Link
+                className="card p-5 transition hover:-translate-y-1"
+                href={href as string}
+                key={name as string}
+              >
+                <I className="text-[#a47237]" />
+                <h3 className="serif mt-4 text-xl">{name as string}</h3>
+                <p className="mt-2 text-sm leading-6 text-stone-600">
+                  {copy as string}
+                </p>
+                <span className="mt-4 inline-block text-sm font-bold text-[#662f39]">
+                  Explore <ArrowRight className="inline" size={15} />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+      <section id="treats" className="bg-[#f0e5d7] py-20">
+        <div className="shell">
+          <p className="eyebrow">Featured treats</p>
+          <h2 className="serif mt-2 text-4xl">
+            A Little Something for Every Occasion
+          </h2>
+          <p className="mt-3 max-w-xl text-stone-600">
+            Beautiful details and delicious moments, ready for the occasions you
+            hold close.
+          </p>
+          <div className="mt-9">
+            <ProductGrid
+              type="Featured treat"
+              items={[cakes[0], parfaits[0], chops[0]]}
+            />
+          </div>
+        </div>
+      </section>
+      <section className="shell grid gap-8 py-20 md:grid-cols-2">
+        <div className="rounded-3xl bg-[#662f39] p-8 text-white">
+          <p className="eyebrow text-[#e7c47a]">Events & decoration</p>
+          <h2 className="serif mt-3 text-4xl">
+            Let&apos;s make your event beautiful.
+          </h2>
+          <p className="mt-4 max-w-md leading-7 text-white/80">
+            From the colour theme to the finishing details, we create
+            celebrations that feel wonderfully yours.
+          </p>
+          <Link className="btn mt-6 bg-white text-[#662f39]" href="/events">
+            Explore event services
+          </Link>
+        </div>
+        <div className="rounded-3xl border border-[#e4d5c5] bg-white p-8">
+          <p className="eyebrow">Need a venue?</p>
+          <h2 className="serif mt-3 text-4xl">Find a space that fits.</h2>
+          <p className="mt-4 max-w-md leading-7 text-stone-600">
+            Get practical guidance on guest size, location, budget and the
+            details that shape your event.
+          </p>
+          <Link className="btn btn-secondary mt-6" href="/consultation">
+            Book a consultation
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

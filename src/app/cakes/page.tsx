@@ -1,1 +1,36 @@
-import { PageHero } from '@/components/page-hero'; import { ProductGrid } from '@/components/product-grid'; import { cakes } from '@/data/products'; import { WhatsAppButton } from '@/components/whatsapp-button'; import { business } from '@/config/business'; export const metadata={title:'Cakes | Mibaz Treats & Events'}; export default function Cakes(){return <><PageHero eyebrow="The cake collection" title="Cakes made for your most memorable moments." copy="Birthday, wedding, anniversary, celebration and custom cakes—crafted to bring a beautiful finishing touch to your occasion."/><main className="shell py-16"><ProductGrid items={cakes} type="Cake collection"/><section className="mt-16 rounded-3xl bg-[#e7c8bc] p-8 md:p-12"><p className="eyebrow">Custom cakes</p><h2 className="serif mt-3 text-4xl">Have Something Special in Mind?</h2><p className="mt-4 max-w-2xl leading-7 text-stone-700">Tell us your idea, theme, colours and preferred style. Let&apos;s create something uniquely yours.</p><WhatsAppButton className="mt-6" message={`Hello ${business.name}, I'd like to enquire about a custom cake.`}>Customize My Cake</WhatsAppButton></section></main></>}
+import { PageHero } from '@/components/page-hero';
+import { ProductGrid } from '@/components/product-grid';
+import { cakes } from '@/data/products';
+import { WhatsAppButton } from '@/components/whatsapp-button';
+import { business } from '@/config/business';
+export const metadata = { title: 'Cakes | Mibaz Treats & Events' };
+export default function Cakes() {
+  return (
+    <>
+      <PageHero
+        eyebrow="The cake collection"
+        title="Cakes made for your most memorable moments."
+        copy="Birthday, wedding, anniversary, celebration and custom cakes—crafted to bring a beautiful finishing touch to your occasion."
+      />
+      <main className="shell py-16">
+        <ProductGrid items={cakes} type="Cake collection" />
+        <section className="mt-16 rounded-3xl bg-[#e7c8bc] p-8 md:p-12">
+          <p className="eyebrow">Custom cakes</p>
+          <h2 className="serif mt-3 text-4xl">
+            Have Something Special in Mind?
+          </h2>
+          <p className="mt-4 max-w-2xl leading-7 text-stone-700">
+            Tell us your idea, theme, colours and preferred style. Let&apos;s
+            create something uniquely yours.
+          </p>
+          <WhatsAppButton
+            className="mt-6"
+            message={`Hello ${business.name}, I'd like to enquire about a custom cake.`}
+          >
+            Customize My Cake
+          </WhatsAppButton>
+        </section>
+      </main>
+    </>
+  );
+}
